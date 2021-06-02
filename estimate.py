@@ -1,29 +1,32 @@
 import math
 import unittest
 import random
+
 def wallis(n):
- c = 1
- prod = 1
- s = 1
- while c<(n+1):
-  prod *= (4 * s ** 2 / (4 * s ** 2 - 1))
-  s = s+1
-  c = c+1
-  prod *= 2
- return prod
- 
- 
+        pi = 0.0
+        for i in range(1,n):
+            x=4*(i**2)
+            y=x-1
+            z=float(x)/float(y)
+            if (i==1):
+                pi=z
+            else:
+                pi*=z
+        pi*=2
+        return pi
+
 def monte_carlo(n):
- count=0
- for i in range(1,n):
-     x = random.random()
-     y = random.random()
-     d=(((x)**2)+((y)**2))**0.5
-     if d<1:
-       count=count+1
- x=count/n
- pi=x*4
- return pi
+        count=0
+        for i in range(1,n):
+            x=random.random()
+            y=random.random()
+            d=(((x)**2)+((y)**2))**0.5
+            if d<1:
+                count=count+1
+        x=count/n
+        pi=x*4
+        return pi
+ 
  
  
 class TestWallis(unittest.TestCase):
